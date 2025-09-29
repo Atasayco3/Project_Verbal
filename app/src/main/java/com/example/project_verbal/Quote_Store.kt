@@ -1,7 +1,8 @@
+// ui/QuoteAdapter.kt
 package com.example.project_verbal.ui
 
 import android.content.Context
-import com.example.project_verbal.ui.Quote
+import com.example.project_verbal.Quote
 import java.io.File
 import java.io.FileWriter
 import java.util.Scanner

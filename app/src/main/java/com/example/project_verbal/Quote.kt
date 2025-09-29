@@ -1,4 +1,4 @@
-package com.example.project_verbal.ui
+package com.example.project_verbal // Changed package to be imported
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

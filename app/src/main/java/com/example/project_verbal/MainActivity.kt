@@ -1,3 +1,4 @@
+// ui/QuoteAdapter.kt
 package com.example.project_verbal.ui
 
 import android.os.Bundle
@@ -15,7 +16,7 @@ import java.util.Scanner
 
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), QuoteSelectionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onQuoteSelected(quote: Quote) { // Clicking on a quote and bringing up that quotes fragment for display.
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main, QuoteDetailFragment.newInstance(quote))
+            .replace(R.id.fragment_container, QuoteDetailFragment.newInstance(quote))
             .addToBackStack(null)
             .commit()
     }

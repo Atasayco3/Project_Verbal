@@ -1,3 +1,4 @@
+// ui/QuoteAdapter.kt
 package com.example.project_verbal.ui
 
 import android.os.Bundle
@@ -5,6 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
+// Newly added imports
+import android.app.Activity
+import android.content.Intent
+import android.widget.Button
+import android.widget.EditText
 
 
 
