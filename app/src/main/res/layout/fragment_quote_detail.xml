@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuoteDetailFragment">
+    android:orientation="vertical"
+    tools:context=".ui.QuoteDetailFragment"
+    android:layout_margin="20dp">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="Quote"/>
+    <TextView
+        android:id="@+id/tvPhraseLarge"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:background="#bbbbbb"
+        android:textColor="#000000"
+        android:text="Let it go!"/>
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="Meaning"/>
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:background="#555555"
+        android:textColor="#ffffff"
+        android:text="I'm feeling scared inside the theater"
+        android:id="@+id/tvMeaning"/>
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="Emotion"/>
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:text="Scared"
+        android:background="#bbbbbb"
+        android:textColor="#000000"
+        android:id="@+id/tvEmotion"/>
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="Certainty"/>
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:background="#555555"
+        android:textColor="#ffffff"
+        android:text="100%"
+        android:id="@+id/tvCertainty"/>
+</LinearLayout>
