@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project_verbal.Quote
 import com.example.project_verbal.R
-// import com.example.project_verbal.data.QuoteStore
+//import com.example.project_verbal.data.QuoteStore
+import com.example.project_verbal.ui.QuoteStore
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 interface QuoteSelectionListener {
