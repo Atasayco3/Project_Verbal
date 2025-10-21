@@ -1,20 +1,20 @@
-// ui/QuoteAdapter.kt
 package com.example.project_verbal.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project_verbal.Quote
 import com.example.project_verbal.R
 
-class QuoteAdapter( // Adapter to modify list and fragment views
+class QuoteAdapter(
     private val quotes: MutableList<Quote>,
     private val onClick: (Quote) -> Unit
 ) : RecyclerView.Adapter<QuoteAdapter.VH>() {
 
-    inner class VH(view: View) : RecyclerView.ViewHolder(view) { // Packaging the other attributes into the quote block visual
+    inner class VH(view: View) : RecyclerView.ViewHolder(view) {
         private val phraseView: TextView = view.findViewById(R.id.tvPhrase)
         private val emotionView: TextView = view.findViewById(R.id.tvEmotion)
 
@@ -35,10 +35,28 @@ class QuoteAdapter( // Adapter to modify list and fragment views
         holder.bind(quotes[position])
     }
 
-    override fun getItemCount() = quotes.size // Count for the size of the list after each call
+    override fun getItemCount() = quotes.size
 
-    fun addQuote(quote: Quote) { // Call when a quote is added to list
+    fun addQuote(quote: Quote) {
         quotes.add(quote)
         notifyItemInserted(quotes.size - 1)
+    }
+
+    fun removeItem(position: Int) {
+        quotes.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    val swipeToDeleteCallback = object :
+        ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ) = false
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            removeItem(viewHolder.adapterPosition)
+        }
     }
 }

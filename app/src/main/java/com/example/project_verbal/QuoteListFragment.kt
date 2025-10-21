@@ -43,6 +43,10 @@ class QuoteListFragment : Fragment() {
         adapter = QuoteAdapter(quotes) { listener.onQuoteSelected(it) }
         rv.adapter = adapter
 
+        androidx.recyclerview.widget.ItemTouchHelper(adapter.swipeToDeleteCallback)
+            .attachToRecyclerView(rv)
+
+        quotes.clear()
         quotes.addAll(QuoteStore.load(requireContext()))
         adapter.notifyDataSetChanged()
 
