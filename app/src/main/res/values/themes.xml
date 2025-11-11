@@ -16,4 +16,5 @@
     <style name="Theme.Project_Verbal" parent="Base.Theme.Project_Verbal" />
     <style name="Theme.Project_Verbal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Project_Verbal.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

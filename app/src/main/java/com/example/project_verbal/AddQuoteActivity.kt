@@ -17,6 +17,7 @@ import com.example.project_verbal.R
 
 class AddQuoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_Project_Verbal)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_quote)
 
