@@ -9,12 +9,23 @@ import com.example.project_verbal.R
 
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-
+private var keepsplash = true
 class MainActivity : AppCompatActivity(), QuoteSelectionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition {keepsplash}
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        lifecycleScope.launch{
+            delay(2000)
+            keepsplash = false
+        }
 
 
         if (savedInstanceState == null) { // Inflating main screen with list of quotes
@@ -40,8 +51,7 @@ class MainActivity : AppCompatActivity(), QuoteSelectionListener {
         when (item.itemId) {
             R.id.sortingAlg -> {
                 Log.d("QuoteLIST", "Sorting algorithm")
-                // movieList?.sortBy{ it?.rating }
-                // quoteAdapter.notifyDataSetChanged()
+
             }
 
         }

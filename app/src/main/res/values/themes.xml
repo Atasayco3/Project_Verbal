@@ -17,4 +17,9 @@
     <style name="Theme.Project_Verbal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Project_Verbal.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#D8D7D7</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/angry_dude</item>
+        <item name="postSplashScreenTheme">@style/Theme.Project_Verbal</item>
+    </style>
 </resources>
