@@ -19,7 +19,7 @@
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#D8D7D7</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/gecho</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/project_verbal_splash_screen</item>
         <item name="postSplashScreenTheme">@style/Theme.Project_Verbal</item>
     </style>
 </resources>
