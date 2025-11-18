@@ -26,6 +26,13 @@ class QuoteListFragment : Fragment() {
     private lateinit var adapter: QuoteAdapter
     private val quotes = mutableListOf<Quote>()
 
+    fun getQuotePosition(q: Quote): Int {
+        return quotes.indexOf(q)
+    }
+
+
+
+
     override fun onAttach(context: Context) { // Attaching list fragment into the main page
         super.onAttach(context)
         listener = context as? QuoteSelectionListener
@@ -55,6 +62,17 @@ class QuoteListFragment : Fragment() {
             addLauncher.launch(Intent(requireContext(), AddQuoteActivity::class.java)) // Sends packaged intent back to
         }
     }
+
+    fun updateQuote(updatedQuote: Quote, position: Int) {
+        if (position != -1 && position < quotes.size) {
+            quotes[position] = updatedQuote
+            adapter.notifyItemChanged(position)
+            QuoteStore.save(requireContext(), quotes)
+        }
+    }
+
+
+
 
     private val addLauncher = registerForActivityResult( // Packaged data to add to list
         ActivityResultContracts.StartActivityForResult()

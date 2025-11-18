@@ -1,33 +1,77 @@
-// ui/QuoteDetailFragment.kt
 package com.example.project_verbal.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.project_verbal.Quote
 import com.example.project_verbal.R
+import com.example.project_verbal.ui.QuoteEditListener
 
-class QuoteDetailFragment : Fragment() { // Fragment class
+
+
+class QuoteDetailFragment : Fragment() {
+
     companion object {
         private const val ARG_QUOTE = "arg_quote"
-        fun newInstance(q: Quote) = QuoteDetailFragment().apply {
-            arguments = bundleOf(ARG_QUOTE to q)
+        private const val ARG_POSITION = "arg_position"
+
+        fun newInstance(q: Quote, position: Int) =
+            QuoteDetailFragment().apply {
+                arguments = bundleOf(
+                    ARG_QUOTE to q,
+                    ARG_POSITION to position
+                )
+            }
+    }
+
+    private val editLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data ?: return@registerForActivityResult
+            val updatedQuote = Quote(
+                phrase = data.getStringExtra("phrase") ?: "",
+                meaning = data.getStringExtra("meaning") ?: "",
+                emotion = data.getStringExtra("emotion") ?: "",
+                certainty = data.getStringExtra("certainty") ?: ""
+            )
+            val pos = data.getIntExtra("position", -1)
+            (activity as? QuoteEditListener)?.onQuoteEdited(updatedQuote, pos)
         }
     }
 
-    override fun onCreateView( // Inflates fragment with detailed
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_quote_detail, container, false)
+    ): View = inflater.inflate(R.layout.fragment_quote_detail, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // Creating documented fragment of details
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val q = requireArguments().getParcelable<Quote>(ARG_QUOTE)!!
+        val pos = requireArguments().getInt(ARG_POSITION)
+
         view.findViewById<TextView>(R.id.tvPhraseLarge).text = q.phrase
         view.findViewById<TextView>(R.id.tvMeaning).text = q.meaning
         view.findViewById<TextView>(R.id.tvEmotion).text = q.emotion
         view.findViewById<TextView>(R.id.tvCertainty).text = q.certainty
+
+        val editBtn = view.findViewById<Button>(R.id.btnEdit)
+        editBtn.setOnClickListener {
+            val intent = Intent(requireContext(), AddQuoteActivity::class.java).apply {
+                putExtra("phrase", q.phrase)
+                putExtra("meaning", q.meaning)
+                putExtra("emotion", q.emotion)
+                putExtra("certainty", q.certainty)
+                putExtra("position", pos)
+                putExtra("isEdit", true)
+            }
+            editLauncher.launch(intent)
+        }
     }
 }

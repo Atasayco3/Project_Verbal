@@ -49,10 +49,11 @@ class AhoCorasick(private val keywords: List<String>) {
             val current = queue.removeFirst()
             for ((char, child) in current.children) {
                 var failNode = current.fail
-                while (failNode != root && !failNode!!.children.containsKey(char)) {
+                while (failNode != null && failNode != root && !failNode.children.containsKey(char)) {
                     failNode = failNode.fail
                 }
                 child.fail = failNode?.children?.get(char) ?: root
+
                 child.output += child.fail!!.output
                 queue += child
             }
