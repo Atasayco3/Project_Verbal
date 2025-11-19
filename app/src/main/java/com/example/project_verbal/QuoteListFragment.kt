@@ -71,9 +71,6 @@ class QuoteListFragment : Fragment() {
         }
     }
 
-
-
-
     private val addLauncher = registerForActivityResult( // Packaged data to add to list
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
