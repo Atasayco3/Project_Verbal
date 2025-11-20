@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
@@ -41,7 +42,7 @@ class QuoteDetailFragment : Fragment() {
                 phrase = data.getStringExtra("phrase") ?: "",
                 meaning = data.getStringExtra("meaning") ?: "",
                 emotion = data.getStringExtra("emotion") ?: "",
-                certainty = data.getStringExtra("certainty") ?: ""
+                iscertain = data.getBooleanExtra("iscertain", false)
             )
             val pos = data.getIntExtra("position", -1)
             (activity as? QuoteEditListener)?.onQuoteEdited(updatedQuote, pos)
@@ -59,7 +60,9 @@ class QuoteDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.tvPhraseLarge).text = q.phrase
         view.findViewById<TextView>(R.id.tvMeaning).text = q.meaning
         view.findViewById<TextView>(R.id.tvEmotion).text = q.emotion
-        view.findViewById<TextView>(R.id.tvCertainty).text = q.certainty
+        val checkBox = view.findViewById<CheckBox>(R.id.checkbox_certain_edit)
+        checkBox.isChecked = q.iscertain
+
 
         val editBtn = view.findViewById<Button>(R.id.btnEdit)
         editBtn.setOnClickListener {
@@ -67,7 +70,7 @@ class QuoteDetailFragment : Fragment() {
                 putExtra("phrase", q.phrase)
                 putExtra("meaning", q.meaning)
                 putExtra("emotion", q.emotion)
-                putExtra("certainty", q.certainty)
+                putExtra("iscertain", checkBox.isChecked)
                 putExtra("position", pos)
                 putExtra("isEdit", true)
             }

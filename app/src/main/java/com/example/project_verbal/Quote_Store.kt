@@ -1,7 +1,7 @@
 // ui/QuoteAdapter.kt
 package com.example.project_verbal.ui
 
-import android.content.Context
+import  android.content.Context
 import com.example.project_verbal.Quote
 import java.io.File
 import java.io.FileWriter
@@ -23,7 +23,7 @@ object QuoteStore { // Creating a basic csv to store Quote class
                         phrase = parts[0],
                         meaning = parts[1],
                         emotion = parts[2],
-                        certainty = parts[3]
+                        iscertain = parts.getOrNull(3)?.toBooleanStrictOrNull() ?: false
                     )
                 }
             }
@@ -35,7 +35,7 @@ object QuoteStore { // Creating a basic csv to store Quote class
         val file = File(context.filesDir, FILE)
         FileWriter(file, false).use { writer ->
             quotes.forEach { q ->
-                writer.write("${q.phrase},${q.meaning},${q.emotion},${q.certainty}\n")
+                writer.write("${q.phrase},${q.meaning},${q.emotion},${q.iscertain}\n")
             }
         }
     }

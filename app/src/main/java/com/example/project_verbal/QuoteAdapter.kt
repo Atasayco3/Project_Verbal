@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project_verbal.Quote
 import com.example.project_verbal.R
+import android.graphics.Color
+
 
 class QuoteAdapter(
     private val quotes: MutableList<Quote>,
@@ -21,8 +23,26 @@ class QuoteAdapter(
         fun bind(quote: Quote) {
             phraseView.text = quote.phrase
             emotionView.text = quote.emotion
+
+            if (quote.iscertain) {
+                // CERTAIN → blue background, white text
+                val blue = Color.parseColor("#2196F3")
+                phraseView.setBackgroundColor(blue)
+                emotionView.setBackgroundColor(blue)
+                phraseView.setTextColor(Color.WHITE)
+                emotionView.setTextColor(Color.WHITE)
+            } else {
+                // NOT CERTAIN → yellow background, black text
+                val yellow = Color.parseColor("#FFFF00")
+                phraseView.setBackgroundColor(yellow)
+                emotionView.setBackgroundColor(yellow)
+                phraseView.setTextColor(Color.BLACK)
+                emotionView.setTextColor(Color.BLACK)
+            }
+
             itemView.setOnClickListener { onClick(quote) }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {

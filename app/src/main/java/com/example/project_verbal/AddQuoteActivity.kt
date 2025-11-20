@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.project_verbal.R
@@ -18,17 +19,21 @@ class AddQuoteActivity : AppCompatActivity() {
         val phraseInput = findViewById<EditText>(R.id.etPhrase)
         val meaningInput = findViewById<EditText>(R.id.etMeaning)
         val emotionInput = findViewById<EditText>(R.id.etEmotion)
-        val certaintyInput = findViewById<EditText>(R.id.etCertainty)
+        val certaintyCheck = findViewById<CheckBox>(R.id.etCertainty)
         val saveButton = findViewById<Button>(R.id.btnSave)
 
         val isEdit = intent.getBooleanExtra("isEdit", false)
         val position = intent.getIntExtra("position", -1)
 
         if (isEdit) {
-            phraseInput.setText(intent.getStringExtra("phrase"))
-            meaningInput.setText(intent.getStringExtra("meaning"))
-            emotionInput.setText(intent.getStringExtra("emotion"))
-            certaintyInput.setText(intent.getStringExtra("certainty"))
+            phraseInput.setText(intent.getStringExtra("phrase") ?: "")
+            meaningInput.setText(intent.getStringExtra("meaning") ?: "")
+            emotionInput.setText(intent.getStringExtra("emotion") ?: "")
+
+            // Get previous certainty boolean (default false if missing)
+            val wasCertain = intent.getBooleanExtra("iscertain", false)
+            certaintyCheck.isChecked = wasCertain
+
             saveButton.text = "Save Changes"
         }
 
@@ -37,11 +42,15 @@ class AddQuoteActivity : AppCompatActivity() {
                 putExtra("phrase", phraseInput.text.toString())
                 putExtra("meaning", meaningInput.text.toString())
                 putExtra("emotion", emotionInput.text.toString())
-                putExtra("certainty", certaintyInput.text.toString())
+
+                // Send checkbox state as boolean
+                putExtra("iscertain", certaintyCheck.isChecked)
+
                 if (isEdit) putExtra("position", position)
             }
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
         }
     }
+
 }

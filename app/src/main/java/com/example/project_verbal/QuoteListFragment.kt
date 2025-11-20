@@ -79,7 +79,7 @@ class QuoteListFragment : Fragment() {
             phrase = data.getStringExtra("phrase") ?: "",
             meaning = data.getStringExtra("meaning") ?: "",
             emotion = data.getStringExtra("emotion") ?: "",
-            certainty = data.getStringExtra("certainty") ?: ""
+            iscertain = data.getBooleanExtra("iscertain", false)
         )
         quotes.add(q)
         adapter.notifyItemInserted(quotes.lastIndex)

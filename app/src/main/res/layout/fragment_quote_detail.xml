@@ -76,16 +76,13 @@
         android:textSize="20sp"
         android:text="Certainty"/>
 
-    <TextView
-        android:layout_width="280dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textSize="32sp"
-        android:background="#555555"
-        android:textColor="#ffffff"
-        android:text="100%"
-        android:id="@+id/tvCertainty"/>
+    <CheckBox
+        android:id="@+id/checkbox_certain_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am certain about this quote"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/btnEdit"
