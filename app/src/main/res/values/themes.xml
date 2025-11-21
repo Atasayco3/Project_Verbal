@@ -12,9 +12,19 @@
         <!-- FIX toolbar + menu text colors -->
         <item name="actionOverflowMenuStyle">@style/Widget.AppCompat.PopupMenu</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
+        <!-- Correct text color for toolbar/menu ONLY -->
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Primary</item>
+
+        <!-- Global button colors -->
+        <item name="materialButtonStyle">@style/Widget.ProjectVerbal.ColoredButton</item>
 
     </style>
+
+    <style name="Widget.ProjectVerbal.ColoredButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#2196F3</item> <!-- Blue button -->
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 
     <style name="Theme.Project_Verbal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Project_Verbal.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
